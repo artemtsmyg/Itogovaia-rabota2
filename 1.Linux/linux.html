@@ -1,0 +1,368 @@
+artem@artem-VirtualBox:~$ mkdir IR
+
+artem@artem-VirtualBox:~$ cd IR
+
+1. Используя команду cat в терминале операционной системы Linux, создать
+два файла Домашние животные (заполнив файл собаками, кошками,
+хомяками) и Вьючные животными заполнив файл Лошадьми, верблюдами и
+ослы), а затем объединить их. Просмотреть содержимое созданного файла.
+Переименовать файл, дав ему новое имя (Друзья человека).
+
+artem@artem-VirtualBox:~/IR$ cat > Pets.txt
+
+Pasha Cat
+
+Bobik Dog
+
+Busia Cat
+
+Melkii hamster
+
+Crug hamster
+
+Sharic Dog  
+    
+artem@artem-VirtualBox:~/IR$ cat > 'Pack animals.txt'
+
+Thunder Hourse
+
+Sandy Camal
+
+Blaze Donkey
+
+Storm Horse
+
+Sahara Camel
+
+Chaky Horse
+
+^Z
+
+[1]+  Остановлен    cat > 'Pack animals.txt'
+
+artem@artem-VirtualBox:~/IR$ cat Pets.txt 'Pack animals.txt' > combined.txt
+
+artem@artem-VirtualBox:~/IR$ cat combined.txt
+
+Pasha Cat
+
+Bobik Dog
+
+Busia Cat
+
+Melkii hamster
+
+Crug hamster
+
+Sharic Dog
+
+Thunder Hourse
+
+Sandy Camal
+
+Blaze Donkey
+
+Storm Horse
+
+Sahara Camel
+
+Chaky Horse
+
+artem@artem-VirtualBox:~/IR$  mv combined.txt 'Друзья человека.txt'
+
+artem@artem-VirtualBox:~/IR$ ll
+
+итого 20
+
+drwxrwxr-x  2 artem artem 4096 янв 29 01:03  ./
+
+drwxr-x--- 17 artem artem 4096 янв 29 00:44  ../
+
+-rw-rw-r--  1 artem artem   77 янв 29 00:57 'Pack animals.txt'
+
+-rw-rw-r--  1 artem artem   75 янв 29 00:53  Pets.txt
+
+-rw-rw-r--  1 artem artem  152 янв 29 01:00 'Друзья человека.txt'
+
+artem@artem-VirtualBox:~/IR$ cat 'Друзья человека.txt'
+
+Pasha Cat
+
+Bobik Dog
+
+Busia Cat
+
+Melkii hamster
+
+Crug hamster
+
+Sharic Dog
+
+Thunder Hourse
+
+Sandy Camal
+
+Blaze Donkey
+
+Storm Horse
+
+Sahara Camel
+
+Chaky Horse
+
+2. Создать директорию, переместить файл туда.
+
+artem@artem-VirtualBox:~/IR$ mkdir Directory
+
+artem@artem-VirtualBox:~/IR$  mv 'Друзья человека.txt' Directory/
+
+artem@artem-VirtualBox:~/IR$ ll
+
+итого 20
+
+drwxrwxr-x  3 artem artem 4096 янв 29 01:08  ./
+
+drwxr-x--- 17 artem artem 4096 янв 29 00:44  ../
+
+drwxrwxr-x  2 artem artem 4096 янв 29 01:08  Directory/
+
+-rw-rw-r--  1 artem artem   77 янв 29 00:57 'Pack animals.txt'
+
+-rw-rw-r--  1 artem artem   75 янв 29 00:53  Pets.txt
+
+artem@artem-VirtualBox:~/IR$ ls
+
+ Directory  'Pack animals.txt'   Pets.txt
+
+
+3. Подключить дополнительный репозиторий MySQL. Установить любой пакет
+из этого репозитория.
+
+
+artem@artem-VirtualBox:~/IR$ wget https://dev.mysql.com/get/mysql-apt-config_0.8.28-1_all.deb
+
+--2024-01-29 01:12:51--  https://dev.mysql.com/get/mysql-apt-config_0.8.28-1_all.deb
+
+Распознаётся dev.mysql.com (dev.mysql.com)… 23.52.29.249, 2001:2030:21:187::2e31, 2001:2030:21:19e::2e31
+
+Подключение к dev.mysql.com (dev.mysql.com)|23.52.29.249|:443... соединение установлено.
+
+HTTP-запрос отправлен. Ожидание ответа… 302 Moved Temporarily
+
+Адрес: https://repo.mysql.com//mysql-apt-config_0.8.28-1_all.deb [переход]
+
+--2024-01-29 01:12:52--  https://repo.mysql.com//mysql-apt-config_0.8.28-1_all.deb
+
+Распознаётся repo.mysql.com (repo.mysql.com)… 23.48.138.21, 2001:2030:4f:80::1d68, 2001:2030:4f:a3::1d68
+
+Подключение к repo.mysql.com (repo.mysql.com)|23.48.138.21|:443... соединение установлено.
+
+HTTP-запрос отправлен. Ожидание ответа… 200 OK
+
+Длина: 18124 (18K) [application/x-debian-package]
+
+Сохранение в: ‘mysql-apt-config_0.8.28-1_all.deb’
+
+
+
+mysql-apt-config_0 100%[================>]  17,70K  --.-KB/s    за 0s      
+
+
+
+2024-01-29 01:12:52 (322 MB/s) - ‘mysql-apt-config_0.8.28-1_all.deb’ сохранён [18124/18124]
+
+
+4. Установить и удалить deb-пакет с помощью dpkg.
+
+artem@artem-VirtualBox:~/IR$ sudo dpkg -i mysql-apt-config_0.8.28-1_all.deb
+
+[sudo] пароль для artem: 
+
+(Чтение базы данных … на данный момент установлено 180436 файлов и каталогов.)
+
+Подготовка к распаковке mysql-apt-config_0.8.28-1_all.deb …
+
+Распаковывается mysql-apt-config (0.8.28-1) на замену (0.8.28-1) …
+
+Настраивается пакет mysql-apt-config (0.8.28-1) …
+
+artem@artem-VirtualBox:~/IR$ sudo apt-get update
+
+Сущ:1 http://ru.archive.ubuntu.com/ubuntu jammy InRelease
+
+Пол:2 http://ru.archive.ubuntu.com/ubuntu jammy-updates InRelease [119 kB]
+
+Сущ:3 http://ru.archive.ubuntu.com/ubuntu jammy-backports InRelease        
+
+Пол:4 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]  
+
+Пол:5 http://ru.archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [1 320 kB]
+
+Пол:6 http://ru.archive.ubuntu.com/ubuntu jammy-updates/main i386 Packages [559 kB]
+
+Пол:7 http://repo.mysql.com/apt/ubuntu jammy InRelease [20,2 kB]           
+
+Ошб:7 http://repo.mysql.com/apt/ubuntu jammy InRelease                     
+
+  Следующие подписи не могут быть проверены, так как недоступен открытый ключ: NO_PUBKEY B7B3B788A8D3785C
+
+Пол:8 http://ru.archive.ubuntu.com/ubuntu jammy-updates/universe i386 Packages [682 kB]
+
+Пол:9 http://ru.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1 035 kB]
+
+Пол:10 http://security.ubuntu.com/ubuntu jammy-security/main i386 Packages [393 kB]
+
+Пол:11 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [1 102 kB]
+
+Пол:12 http://security.ubuntu.com/ubuntu jammy-security/main Translation-en [207 kB]
+
+Пол:13 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [1 306 kB]
+
+Пол:14 http://security.ubuntu.com/ubuntu jammy-security/restricted Translation-en [213 kB]
+
+Чтение списков пакетов… Готово                                     
+
+W: Ошибка GPG: http://repo.mysql.com/apt/ubuntu jammy InRelease: Следующие подписи не могут быть проверены, так как недоступен открытый ключ: NO_PUBKEY B7B3B788A8D3785C
+
+E: Репозиторий «http://repo.mysql.com/apt/ubuntu jammy InRelease» не подписан.
+
+N: Обновление из этого репозитория нельзя выполнить безопасным способом, поэтому по умолчанию он отключён.
+
+N: Информацию о создании репозитория и настройках пользователя смотрите в справочной странице apt-secure(8).
+
+
+5. Выложить историю команд в терминале ubuntu
+
+artem@artem-VirtualBox:~/IR$ history
+
+    1  whoami
+
+    2  mc
+
+    3  sudo apt install mc
+
+    4  nano
+
+    5  sudo su
+
+    6  reboot
+
+    7  mkdir DZ
+
+    8  cd DZ
+
+    9  cat > Pets.txt
+
+   10  10
+
+   11  sudo dpkg -r mc
+
+   12  history >> 'Tsmyg Artem Sergeevich, 27.01.2024, 4719.4720.txt'
+
+   13  history
+
+   14  exit
+
+   15  mkdir DZ
+
+   16  sudo su
+
+   17  mkdir HW
+
+   18  cd HW
+
+   19  cat > Pets.txt
+
+   20  cat > 'Pack animals.txt'
+
+   21  Pets.txt
+
+   22  cat Pets.txt 'Pack animals.txt' > combined.txt
+
+   23  cat combined.txt
+
+   24  cat > Pets.txt
+
+   25  cat Pets.txt 'Pack animals.txt' > combined.txt
+
+   26  cat combined.txt
+
+   27  mv combined.txt 'Human Friends.txt'
+
+   28  ls
+
+   29  mkdir NewDir
+
+   30  mv 'Human Friends.txt' NewDir/
+
+   31  ls
+
+   32  tree
+
+   33  sudo snap install tree
+
+   34  sudo apt  install tree
+
+   35  tree
+
+   36  mysql
+
+   37  sudo apt install mysql-client-core-8.0
+
+   38  sudo apt install mariadb-client-core-10.6
+
+   39  wget https://dev.mysql.com/get/mysql-apt-config_0.8.28-1_all.deb
+
+   40  sudo dpkg -i mysql-apt-config_0.8.28-1_all.deb
+
+   41  sudo apt-get update
+
+   42  sudo apt install mysql-server
+
+   43  systemctl status mysql
+
+   44  wget http://archive.ubuntu.com/ubuntu/pool/universe/m/mc/mc_4.8.29-2_amd64.deb
+
+   45  sudo dpkg -i mc_4.8.29-2_amd64.deb
+
+   46  sudo apt install -f
+
+   47  mc
+
+   48  sudo apt install mc
+
+   49  mc
+
+   50  exit
+
+   51  history
+
+   52  mkdir IR
+
+   53  cd IR
+
+   54  cat > Pets.txt
+
+   55  cat > 'Pack animals.txt'
+
+   56  cat Pets.txt 'Pack animals.txt' > combined.txt
+
+   57  cat combined.txt
+
+   58  ll
+
+   59  cat 'Друзья человека.txt'
+
+   60  mkdir Directory
+
+   61  ll
+
+   62  ls
+
+   63  wget https://dev.mysql.com/get/mysql-apt-config_0.8.28-1_all.deb
+
+   64  sudo dpkg -i mysql-apt-config_0.8.28-1_all.deb
+
+   65  sudo apt-get update
+
+   66  history
